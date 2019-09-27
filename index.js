@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // index.js
 
 // The code below is temporary and can be commented out.
