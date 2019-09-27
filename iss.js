@@ -18,7 +18,7 @@ const fetchMyIP = function(callback) {
 };
 
 const fetchCoordsByIP = function(ip, callback) {
-  request(`https://ipvigilante.com/json/${ip}`, (error, response, body) => {
+  request(`https://ipvigilante.com/${ip}`, (error, response, body) => {
     if (error) {
       callback(error, null);
       return;
@@ -52,26 +52,13 @@ const fetchISSFlyOverTimes = function(coords, callback) {
   });
 };
 
-const nextISSTimesForMyLocation = function(callback) {
-  fetchMyIP((error, ip) => {
-    if (error) {
-      return callback(error, null);
-    }
-
-    fetchCoordsByIP(ip, (error, loc) => {
-      if (error) {
-        return callback(error, null);
-      }
-
-      fetchISSFlyOverTimes(loc, (error, passes) => {
-        if (error) {
-          return callback(error, null);
-        }
-
-        callback(null, passes);
-      });
-    });
-  });
+const nextISSTimesForMyLocation = function(passes) {
+  for (let pass of passes) {
+    const datetime = new Date(0);
+    datetime.setUTCSeconds(pass.risetime);
+    const duration = pass.duration;
+    console.log(`Next pass at ${datetime} for ${duration} seconds!`);
+  }
 
 };
 
