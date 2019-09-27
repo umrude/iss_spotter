@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 // index.js
 
-// The code below is temporary and can be commented out.
 const { fetchMyIP } = require('./iss');
 const { fetchCoordsByIP } = require('./iss');
 const { fetchISSFlyOverTimes } = require('./iss');
@@ -26,5 +25,4 @@ fetchMyIP((error, ip) => {
     });
   });
 });
-
 
